@@ -121,6 +121,7 @@ CloudIQ/
 ```bash
 git clone https://github.com/<your-username>/CloudIQ.git
 cd CloudIQ
+```
 
 ### 2️⃣ Install Kubernetes (K3s)
 curl -sfL https://get.k3s.io | sh -

@@ -77,3 +77,49 @@ CloudIQ follows a **closed-loop automation architecture**:
 
 ## 📁 Project Structure
 
+CloudIQ/
+│
+├── remediator/
+│ ├── deploy-remediator.sh
+│ ├── model.pkl
+│ ├── app.py
+│ └── Dockerfile
+| ├── requirements.txt
+│ └── remediator-deployment.yaml
+│
+├── Clouddeploy/
+│ └── Cloud_setup.sh
+│
+├── screenshots/
+│ ├── dashboard.png
+│ ├── alert.png
+│ └── autoscaling.png
+│
+└── README.md
+
+---
+
+## 📸 Screenshots
+
+| Grafana Dashboard | CPU Alert Triggered | Pod Autoscaling |
+|------------------|--------------------|-----------------|
+| ![Dashboard](screenshots/dashboard.png) | ![Alert](screenshots/alert.png) | ![HPA](screenshots/autoscaling.png) |
+
+---
+
+## 🚀 Setup & Installation
+
+### ✅ Prerequisites
+- AWS EC2 instance (2 vCPU, 4+ GB RAM)
+- Ubuntu OS
+- Internet connectivity
+- SSH access
+
+---
+
+### 1️⃣ Clone Repository
+```bash
+git clone https://github.com/<your-username>/CloudIQ.git
+cd CloudIQ
+
+

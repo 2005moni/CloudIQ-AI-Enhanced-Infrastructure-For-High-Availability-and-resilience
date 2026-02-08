@@ -122,4 +122,90 @@ CloudIQ/
 git clone https://github.com/<your-username>/CloudIQ.git
 cd CloudIQ
 
+### 2️⃣ Install Kubernetes (K3s)
+curl -sfL https://get.k3s.io | sh -
+sudo chmod 644 /etc/rancher/k3s/k3s.yaml
+mkdir -p ~/.kube
+sudo cp /etc/rancher/k3s/k3s.yaml ~/.kube/config
+
+3️⃣ Deploy Sock Shop Application
+kubectl create namespace sock-shop
+kubectl apply -f https://raw.githubusercontent.com/microservices-demo/microservices-demo/master/deploy/kubernetes/complete-demo.yaml -n sock-shop
+
+4️⃣ Install Prometheus & Grafana
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+
+helm install prometheus prometheus-community/prometheus -n monitoring --create-namespace
+helm install grafana grafana/grafana -n monitoring
+
+5️⃣ Deploy Remediator
+kubectl apply -f remediator/
+
+6️⃣ Configure Autoscaling (HPA)
+kubectl autoscale deployment remediator \
+  --cpu-percent=80 \
+  --min=1 \
+  --max=3 \
+  -n sock-shop
+
+🌐 Access URLs
+Service	URL
+Sock Shop	http://<EC2_PUBLIC_IP>:30001
+Prometheus	http://<EC2_PUBLIC_IP>:30900
+Grafana	http://<EC2_PUBLIC_IP>:32000
+
+Grafana Credentials:
+Username: admin
+Password: admin
+
+🧪 Testing Scenarios
+# High CPU stress testing
+# Pod failure simulation
+# Alert triggering validation
+# Autoscaling verification
+# End-to-end self-healing workflow
+
+📈 Results & Impact
+# Automated detection of performance issues
+# Reduced Mean Time to Recovery (MTTR)
+# Improved system availability
+# Minimal manual intervention
+# Demonstrated real-world cloud resilience
+
+⚠️ Limitations
+# Single-node Kubernetes cluster
+# Autoscaling delay due to metric stabilization
+# Predictive AI models not included in current version
+
+🔮 Future Enhancements
+# AI-based failure prediction
+# Reinforcement learning for autoscaling
+# Multi-node Kubernetes clusters
+# Cost-aware scaling
+# Distributed tracing integration
+
+🎓 Academic Information
+Project Title: CloudIQ – AI Enhanced Infrastructure for High Availability and Resilience
+Department: Computer Science and Engineering
+Institution: Bapuji Institute of Engineering and Technology (BIET)
+University: Visvesvaraya Technological University (VTU)
+Location: Davangere, Karnataka, India
+
+👨‍💻 Authors
+Karthik S – karthikkati8105@gmail.com
+
+Mohan B – work.mohanb@gmail.com
+
+Monika B S – monikabs4509@gmail.com
+
+Syed Musaib – syedmusaib34@gmail.com
+
+📜 License
+This project is developed for academic and research purposes.
+Free to use, modify, and extend with proper attribution.
+
+⭐ If you find this project useful, consider giving it a star!
+
 
